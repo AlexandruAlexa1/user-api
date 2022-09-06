@@ -3,6 +3,8 @@ package com.aa.user;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +46,7 @@ public class UserRestController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<User> add(@RequestBody User user) {
+	public ResponseEntity<User> add(@RequestBody @Valid User user) {
 		User savedUser = service.save(user);
 		
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId()).toUri();
@@ -53,7 +55,7 @@ public class UserRestController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<User> update(@RequestBody User user) {
+	public ResponseEntity<User> update(@RequestBody @Valid User user) {
 		User updatedAccount = service.save(user);
 		return new ResponseEntity<>(updatedAccount, HttpStatus.OK);
 	}
