@@ -21,7 +21,6 @@ public class User {
 	private String email;
 	
 	@Column(length = 64, nullable = false)
-	@JsonIgnore
 	private String password;
 	
 	@Column(name = "first_name", length = 45, nullable = false)

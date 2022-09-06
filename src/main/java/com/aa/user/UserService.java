@@ -25,4 +25,8 @@ public class UserService {
 			throw new NotFoundException("Could not find any user with ID: " + id);
 		}
 	}
+	
+	public User save(User user) {
+		return repo.save(user);
+	}
 }
