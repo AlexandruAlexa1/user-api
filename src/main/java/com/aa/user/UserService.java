@@ -22,11 +22,19 @@ public class UserService {
 		try {
 			return repo.findById(id).get();
 		} catch (NoSuchElementException e) {
-			throw new NotFoundException("Could not find any user with ID: " + id);
+			throw new NotFoundException("Could not find any User with ID: " + id);
 		}
 	}
 	
 	public User save(User user) {
 		return repo.save(user);
+	}
+
+	public void delete(Integer id) throws NotFoundException {
+		if (!repo.existsById(id)) {
+			throw new NotFoundException("Could not find any User with ID: " + id);
+		}
+		
+		repo.deleteById(id);
 	}
 }
